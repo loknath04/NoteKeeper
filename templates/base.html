@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notes Keeper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="site-wrapper">
+        <nav class="navbar">
+            <div class="container navbar-container">
+                <a href="{{ url_for('index') }}" class="logo">Notes Keeper</a>
+                <div class="nav-links">
+                    <a href="{{ url_for('index') }}">Home</a>
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                        <a href="{{ url_for('logout') }}">Logout</a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}">Login</a>
+                        <a href="{{ url_for('register') }}">Register</a>
+                    {% endif %}
+                    <button id="theme-toggle" class="btn-theme-toggle">
+                        <span class="icon light-icon">☀️</span>
+                        <span class="icon dark-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div class="container main-content">
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <ul class="flash">
+                  {% for msg in messages %}
+                    <li>{{ msg }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
+            {% block content %}{% endblock %}
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2025 Notes Keeper. All Rights Reserved.</p>
+            </div>
+        </footer>
+    </div>
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-mode');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>
