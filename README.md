@@ -10,6 +10,15 @@ Notes Keeper is a simple web application built with Flask that allows users to r
 - **Secure Data Storage:** Notes and user data are stored in a local SQLite database.
 - **Responsive Design:** A modern, professional user interface that works on various screen sizes.
 
+## Screenshots
+
+**Home Page:**
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/33cb8fc9-65c7-4f21-88c8-2af3790dc29a" />
+
+**Dashboard:**
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/6ba56a80-fade-46ef-977a-fa08f041a549" />
+
+
 ## Technologies Used 🛠️
 
 **Backend:**
